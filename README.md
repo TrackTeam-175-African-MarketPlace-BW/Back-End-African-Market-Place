@@ -2,45 +2,28 @@
 
 ## API Sanity Check
 
-- GET "/"
+- **GET "/"**
 
-REQUEST:
-```
-N/A
-```
+REQUEST: `N/A`
 
-RESPONSE:
-
-```
-{
-"api": "up"
-}
-```
+RESPONSE: `{"api": "up"}`
 
 ---
 
 ## User Endpoint
 
-- GET "/api/users"
+- **GET "/api/users"**
 
-REQUEST:
-```
-N/A
-```
+REQUEST:`N/A`
 
-RESPONSE:
-`{ "users": "up" }`
+RESPONSE: `{ "users": "up" }`
 
 ---
 
 ## Items Endpoint
 
-- GET "/api/items"
+- **GET "/api/items"**
 
-REQUEST:
-```
-N/A
-```
+REQUEST:`N/A`
 
-RESPONSE:
-`{ "items": "up" }`
+RESPONSE: `{ "items": "up" }`
