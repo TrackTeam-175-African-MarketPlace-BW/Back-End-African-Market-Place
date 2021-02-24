@@ -5,35 +5,42 @@
 - GET "/"
 
 REQUEST:
-payload: N/A
+```
+N/A
+```
 
 RESPONSE:
 
-````{
+```
+{
 "api": "up"
-}```
+}
+```
+
+---
 
 ## User Endpoint
 
 - GET "/api/users"
 
 REQUEST:
-payload: N/A
+```
+N/A
+```
 
 RESPONSE:
-```{
-"users": "up"
-}```
+`{ "users": "up" }`
+
+---
 
 ## Items Endpoint
 
 - GET "/api/items"
 
 REQUEST:
-payload: N/A
+```
+N/A
+```
 
 RESPONSE:
-```{
-"items": "up"
-}```
-````
+`{ "items": "up" }`
