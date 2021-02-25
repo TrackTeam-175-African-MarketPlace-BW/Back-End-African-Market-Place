@@ -6,11 +6,12 @@ module.exports = {
         connection: {
             filename: "./data/marketplace.db3",
         },
+        useNullAsDefault: true,
         migrations: {
             directory: "./data/migrations",
         },
         seeds: {
-            directory: "./data/seeds,",
+            directory: "./data/seeds",
         },
         pool: {
             afterCreate: (conn, cb) => {
