@@ -1,7 +1,7 @@
 exports.seed = function(knex) {
     // Deletes ALL existing entries
     return knex("categories")
-        .truncate()
+        .raw("TRUNCATE TABLE categories CASCADE")
         .then(function() {
             // Inserts seed entries
             return knex("categories").insert([
