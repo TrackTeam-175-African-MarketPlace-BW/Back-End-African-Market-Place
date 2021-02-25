@@ -4,7 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js",
+        "migrations": "knex migrate:latest",
+        "rollback": "knex migrate:rollback",
+        "seeds": "knex seed:run",
+        "start": "node index.js ",
         "server": "nodemon index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
