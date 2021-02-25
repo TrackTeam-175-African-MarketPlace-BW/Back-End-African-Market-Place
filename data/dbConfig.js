@@ -4,4 +4,4 @@ require("dotenv").config();
 
 const ENVIRONMENT = process.env.ENVIRONMENT;
 
-module.exports = knex(knexConfig(ENVIRONMENT));
+module.exports = knex(knexConfig[ENVIRONMENT]);
