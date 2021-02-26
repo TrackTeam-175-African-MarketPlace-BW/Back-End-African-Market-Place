@@ -39,10 +39,10 @@ async function addUser(newUser) {
   return user;
 }
 
-async function editUser(savedUser) {
+async function editUser(changedUser) {
   const [user_id] = await db("users")
-    .where({ id: savedUser.id })
-    .update(savedUser, ["id"]);
+    .where({ id: changedUser.id })
+    .update(changedUser, ["id"]);
   const [user] = await getUserById(user_id.id);
   return user;
 }

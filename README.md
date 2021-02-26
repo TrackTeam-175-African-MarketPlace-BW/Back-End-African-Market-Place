@@ -217,6 +217,28 @@ RESPONSE:
 }
 ```
 
+- **DELETE "/api/users/:id/items/:itemId"** [RESTRICTED]
+
+EXAMPLE: "/api/users/16/items/9"
+
+REQUEST:
+
+```
+headers: {
+    authorization: "Bearer insert_token_here"
+}
+```
+
+RESPONSE:
+
+`N/A`
+```
+Response status: 204 (upon successful delete)
+```
+
+🧮 Notes:
+A logged in user can't delete an item for another user.
+
 ---
 
 ## Items Endpoints

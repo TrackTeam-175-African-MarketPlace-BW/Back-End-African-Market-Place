@@ -132,6 +132,39 @@ router.get(
   }
 );
 
+router.delete(
+  "/:id/items/:itemId",
+  checkUserId,
+  checkItemId,
+  restrict,
+  (req, res, next) => {
+    const user = req.user;
+    const email = req.decodedToken.user;
+    const { itemId } = req.params;
+
+    if (user.email !== email) {
+      const err = new Error();
+      err.status = 403;
+      err.message = "You're not allowed to delete this item.";
+      next(err);
+    } else {
+      Items.deleteItem(itemId)
+        .then((count) => {
+          if (count === 1) res.sendStatus(204);
+          else {
+            const err = new Error();
+            err.message = "Server wasn't able to delete item successfully.";
+            next(err);
+          }
+        })
+        .catch((err) => {
+          err.message = "Server failed to delete an item.";
+          next(err);
+        });
+    }
+  }
+);
+
 function generateToken(email) {
   const payload = { user: email };
   const options = {

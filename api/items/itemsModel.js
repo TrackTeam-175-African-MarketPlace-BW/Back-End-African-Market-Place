@@ -47,4 +47,17 @@ async function addItem(newItem) {
   return getItemById(newId);
 }
 
-module.exports = { getItems, getItemById, addItem };
+async function editItem(changedItem) {
+  const [item_id] = await db("items")
+    .where({ id: changedItem.id })
+    .update(changedItem, ["id"]);
+  const [updatedItem] = await getUserById(item_id.id);
+  return updatedItem;
+}
+
+async function deleteItem(id) {
+  const count = await db("items").where({ id }).del();
+  return count;
+}
+
+module.exports = { getItems, getItemById, addItem, deleteItem, editItem };
