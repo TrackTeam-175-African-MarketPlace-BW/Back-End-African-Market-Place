@@ -34,7 +34,10 @@ RESPONSE: List of users [admin privileges]
 
 - **GET "/api/users/:id"** [RESTRICTED]
 
+EXAMPLE: "/api/users/1"
+
 REQUEST:
+
 ```
 headers: {
     authorization: "Bearer insert_token_here"
@@ -101,20 +104,23 @@ RESPONSE:
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWxleEBsYW1iZGEuY29tIiwiaWF0IjoxNjE0MzQxMjA5LCJleHAiOjE2MTQzNDQ4MDl9.Kpo_FQQ593r9_buGDiUA1jG5IWPDar18xKQ2aRXJAh0"
 }
 ```
+
 ---
 
 ## Items Endpoints
 
-- **GET "/api/items"** [RESTRICTED] 
+- **GET "/api/items"** [RESTRICTED]
 
 REQUEST:
+
 ```
 headers: {
     authorization: "Bearer insert_token_here"
 }
 ```
 
-RESPONSE: 
+RESPONSE:
+
 ```
 [
     {
@@ -154,6 +160,34 @@ RESPONSE:
 ]
 ```
 
+- **GET "/api/items/:itemId"** [RESTRICTED]
+
+EXAMPLE: "/api/items/3"
+
+REQUEST:
+
+```
+headers: {
+    authorization: "Bearer insert_token_here"
+}
+```
+
+RESPONSE:
+
+```
+{
+    "id": 3,
+    "name": "Soya Beans",
+    "description": "Best beans in the markets",
+    "price": 25.5,
+    "category": "Beans",
+    "market": "Busia",
+    "location": "Kenya",
+    "owner": "Chad Diaz",
+    "owner_email": "chad@gmail.com"
+},
+```
+
 ---
 
 ## Helpers Endpoints
@@ -163,6 +197,7 @@ RESPONSE:
 REQUEST:`N/A`
 
 RESPONSE:
+
 ```
 [
     {
@@ -193,6 +228,7 @@ RESPONSE:
 REQUEST:`N/A`
 
 RESPONSE:
+
 ```
 [
     {
@@ -224,6 +260,7 @@ RESPONSE:
 REQUEST:`N/A`
 
 RESPONSE:
+
 ```
 [
     {
@@ -255,11 +292,14 @@ RESPONSE:
 ]
 ```
 
-- **GET "/api/markets?country=Rwanda"**
+- **GET "/api/markets?country=INSERT_COUNTRY_NAME"**
+
+EXAMPLE: "/api/markets?country=Rwanda"
 
 REQUEST:`N/A`
 
 RESPONSE:
+
 ```
 [
     {
