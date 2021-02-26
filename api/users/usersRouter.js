@@ -1,10 +1,12 @@
 const router = require("express").Router();
 const Users = require("./usersModel");
+const Items = require("../items/itemsModel");
 const {
   restrict,
   checkUserBody,
   checkCountry,
   checkUserId,
+  checkItemId,
 } = require("../middleware/middleware");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -80,6 +82,26 @@ router.get("/:id/items", checkUserId, restrict, (req, res, next) => {
       next(err);
     });
 });
+
+router.get(
+  "/:id/items/:itemId",
+  checkUserId,
+  checkItemId,
+  restrict,
+  (req, res, next) => {
+    //this endpoint is currently redundant because users are allowed to view items by other users.
+    const { id } = req.params;
+    const { itemId } = req.params;
+    Items.getItemById(itemId)
+      .then(([item]) => {
+        res.status(200).json(item);
+      })
+      .catch((err) => {
+        err.message = "Server failed getting item.";
+        next(err);
+      });
+  }
+);
 
 function generateToken(email) {
   const payload = { user: email };

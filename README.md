@@ -146,6 +146,33 @@ RESPONSE:
 ]
 ```
 
+- **GET "/api/users/:id/items/:itemId"** [RESTRICTED]
+
+EXAMPLE: "/api/users/2/items/2"
+
+REQUEST:
+
+```
+headers: {
+    authorization: "Bearer insert_token_here"
+}
+```
+
+RESPONSE:
+
+```
+{
+    "id": 2,
+    "name": "Beef",
+    "description": "Best Beef in the markets",
+    "price": 50,
+    "category": "Animal Products",
+    "market": "Garisa",
+    "location": "Tanzania",
+    "owner": "Chad Diaz",
+    "owner_email": "chad@gmail.com"
+}
+```
 
 ---
 
