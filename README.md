@@ -2,7 +2,8 @@
 
 📝 DEPLOYED ENDPOINTS:
 
-✔️ **Front End**: N/A
+✔️ **Front End**:
+https://african-market-place-tt-175-buildweek.vercel.app/
 
 ✔️ **Back end**:
 https://ialkamal-be-amp.herokuapp.com/
