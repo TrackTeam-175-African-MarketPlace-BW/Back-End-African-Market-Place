@@ -29,15 +29,7 @@ router.get("/:id", checkUserId, restrict, (req, res, next) => {
     err.status = 403;
     err.message = "You're not allowed to view this information";
     next(err);
-  } else
-    res.status(200).json({
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      user_info: user.user_info,
-      user_photo: user.user_photo,
-      country_id: user.country_id,
-    });
+  } else res.status(200).json(user);
 });
 
 router.post(
@@ -49,15 +41,7 @@ router.post(
     const hash = bcrypt.hashSync(user.password, 10);
     try {
       const newUser = await Users.addUser({ ...user, password: hash });
-      console.log("REACHED HERE!!!");
-      res.status(201).json({
-        id: newUser.id,
-        email: newUser.email,
-        name: newUser.name,
-        user_info: newUser.user_info,
-        user_photo: newUser.user_photo,
-        country_id: newUser.country_id,
-      });
+      res.status(201).json(newUser);
     } catch (err) {
       err.message = "Server failed to add user.";
       next(err);

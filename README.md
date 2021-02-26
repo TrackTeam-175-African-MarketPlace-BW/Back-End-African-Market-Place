@@ -30,13 +30,13 @@ RESPONSE: `{"api": "up"}`
 
 REQUEST:`N/A`
 
-RESPONSE: `{ "users": "up" }`
+RESPONSE: List of users [admin privileges]
 
 - **GET "/api/users/:id"** [RESTRICTED]
 
 REQUEST:
 ```
-headers {
+headers: {
     authorization: "Bearer insert_token_here"
 }
 ```
@@ -50,7 +50,7 @@ RESPONSE:
     "name": "Ismail AlKamal",
     "user_info": "Best seller in the country.",
     "user_photo": "https://ca.slack-edge.com/ESZCHB482-W015HRAH83G-46d85de735e1-512",
-    "country_id": 4
+    "country": "Rwanda"
 }
 ```
 
@@ -63,7 +63,7 @@ REQUEST:
 
 ```
 {
-    "email": "alex@gmail.com",
+    "email": "alex@lambda.com",
     "password": "alex",
     "country": "Kenya"
 }
@@ -73,12 +73,12 @@ RESPONSE:
 
 ```
 {
-    "id": 11,
-    "email": "alex@gmail.com",
+    "id": 14,
+    "email": "alex@lambda.com",
     "name": null,
     "user_info": null,
     "user_photo": null,
-    "country_id": 1
+    "country": "Kenya"
 }
 ```
 
@@ -88,7 +88,7 @@ REQUEST:
 
 ```
 {
-    "email": "alex@gmail.com",
+    "email": "alex@lambda.com",
     "password": "alex"
 }
 ```
@@ -98,18 +98,56 @@ RESPONSE:
 ```
 {
     "message": "login successful.",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE2MTQzMTI5NjgsImV4cCI6MTYxNDMxNjU2OH0.bhlMzlV3mLced9PgGwuX1_8V8Vr5C6Yq4HVmkdnWxgg"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWxleEBsYW1iZGEuY29tIiwiaWF0IjoxNjE0MzQxMjA5LCJleHAiOjE2MTQzNDQ4MDl9.Kpo_FQQ593r9_buGDiUA1jG5IWPDar18xKQ2aRXJAh0"
 }
 ```
 ---
 
 ## Items Endpoint
 
-- **GET "/api/items"**
+- **GET "/api/items"** [RESTRICTED] 
 
 REQUEST:`N/A`
 
-RESPONSE: `{ "items": "up" }`
+RESPONSE: 
+```
+[
+    {
+        "id": 1,
+        "name": "Eggs",
+        "description": "Best Eggs in the markets",
+        "price": 25.5,
+        "category": "Animal Products",
+        "market": "Bungoma",
+        "location": "Kenya",
+        "owner": "Ismail AlKamal",
+        "owner_email": "ismail@gmail.com"
+    },
+    {
+        "id": 2,
+        "name": "Beef",
+        "description": "Best Beef in the markets",
+        "price": 50,
+        "category": "Animal Products",
+        "market": "Garisa",
+        "location": "Tanzania",
+        "owner": "Chad Diaz",
+        "owner_email": "chad@gmail.com"
+    },
+    {
+        "id": 3,
+        "name": "Soya Beans",
+        "description": "Best beans in the markets",
+        "price": 25.5,
+        "category": "Beans",
+        "market": "Busia",
+        "location": "Kenya",
+        "owner": "Chad Diaz",
+        "owner_email": "chad@gmail.com"
+    },
+    ...
+]
+```
 
 ---
 
@@ -141,6 +179,93 @@ RESPONSE:
     {
         "id": 5,
         "country": "South Sudan"
+    }
+]
+```
+
+- **GET "/api/categories"**
+
+REQUEST:`N/A`
+
+RESPONSE:
+```
+[
+    {
+        "id": 1,
+        "category": "Animal Products"
+    },
+    {
+        "id": 2,
+        "category": "Beans"
+    },
+    {
+        "id": 3,
+        "category": "Cereals - Maize"
+    },
+    {
+        "id": 4,
+        "category": "Cereals - Other"
+    },
+    {
+        "id": 5,
+        "category": "Cereals - Rice"
+    },
+     ...
+]
+```
+
+- **GET "/api/markets"**
+
+REQUEST:`N/A`
+
+RESPONSE:
+```
+[
+    {
+        "id": 1,
+        "market": "Bungoma",
+        "location": "Kenya"
+    },
+    {
+        "id": 2,
+        "market": "Busia",
+        "location": "Kenya"
+    },
+    {
+        "id": 3,
+        "market": "Eldoret",
+        "location": "Uganda"
+    },
+    {
+        "id": 4,
+        "market": "Embu",
+        "location": "Uganda"
+    },
+    {
+        "id": 5,
+        "market": "Garisa",
+        "location": "Tanzania"
+    },
+     ...
+]
+```
+
+- **GET "/api/markets?country=Rwanda"**
+
+REQUEST:`N/A`
+
+RESPONSE:
+```
+[
+    {
+        "id": 7,
+        "market": "Kajiado",
+        "location": "Rwanda"
+    },
+    {
+        "id": 8,
+        "market": "kakamega",
+        "location": "Rwanda"
     }
 ]
 ```

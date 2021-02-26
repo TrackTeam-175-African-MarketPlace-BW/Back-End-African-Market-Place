@@ -17,11 +17,19 @@ function getCategories() {
 }
 
 async function getMarkets(...args) {
-  if (args.length === 0) return db("markets");
+  if (args.length === 0)
+    return db
+      .select("markets.id", "markets.market", "countries.country as location")
+      .from("markets")
+      .join("countries", "markets.country_id", "=", "countries.id");
   else {
     const country = args[0];
     const savedCountry = await getCountryByName(country);
-    return db("markets").where({ country_id: savedCountry.id });
+    return db
+      .select("markets.id", "markets.market", "countries.country as location")
+      .from("markets")
+      .where("markets.country_id", savedCountry.id)
+      .join("countries", "markets.country_id", "=", "countries.id");
   }
 }
 

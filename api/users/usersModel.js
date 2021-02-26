@@ -1,11 +1,32 @@
 const db = require("../../data/dbConfig");
 
 function getUsers() {
-  return db("users");
+  return db
+    .select(
+      "users.id",
+      "users.email",
+      "users.name",
+      "users.user_info",
+      "users.user_photo",
+      "countries.country"
+    )
+    .from("users")
+    .join("countries", "users.country_id", "=", "countries.id");
 }
 
 function getUserById(id) {
-  return db("users").where({ id });
+  return db
+    .select(
+      "users.id",
+      "users.email",
+      "users.name",
+      "users.user_info",
+      "users.user_photo",
+      "countries.country"
+    )
+    .from("users")
+    .where("users.id", id)
+    .join("countries", "users.country_id", "=", "countries.id");
 }
 
 function getUserByEmail(email) {
@@ -14,7 +35,7 @@ function getUserByEmail(email) {
 
 async function addUser(newUser) {
   const [user_id] = await db("users").insert(newUser, ["id"]);
-  const [user] = await getUserById(user_id.id);
+  const [user] = await getUserById(user_id);
   return user;
 }
 
