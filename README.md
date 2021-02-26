@@ -32,9 +32,14 @@ REQUEST:`N/A`
 
 RESPONSE: `{ "users": "up" }`
 
-- **GET "/api/users/:id"**
+- **GET "/api/users/:id"** [RESTRICTED]
 
-REQUEST:`N/A`
+REQUEST:
+```
+headers {
+    authorization: "Bearer insert_token_here"
+}
+```
 
 RESPONSE:
 
@@ -48,6 +53,9 @@ RESPONSE:
     "country_id": 4
 }
 ```
+
+🧮 Notes:
+A logged in user can't view the profile details of another user.
 
 - **POST "/api/users/register"**
 
@@ -67,7 +75,6 @@ RESPONSE:
 {
     "id": 11,
     "email": "alex@gmail.com",
-    "password": "$2b$10$5X2TilanI/JOh0CCG9b.F.pJEXlOHaLNdB46LGhEh2a4AQhJo0Kgy",
     "name": null,
     "user_info": null,
     "user_photo": null,
@@ -75,6 +82,25 @@ RESPONSE:
 }
 ```
 
+- **POST "/api/users/login"**
+
+REQUEST:
+
+```
+{
+    "email": "alex@gmail.com",
+    "password": "alex"
+}
+```
+
+RESPONSE:
+
+```
+{
+    "message": "login successful.",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE2MTQzMTI5NjgsImV4cCI6MTYxNDMxNjU2OH0.bhlMzlV3mLced9PgGwuX1_8V8Vr5C6Yq4HVmkdnWxgg"
+}
+```
 ---
 
 ## Items Endpoint
@@ -84,3 +110,37 @@ RESPONSE:
 REQUEST:`N/A`
 
 RESPONSE: `{ "items": "up" }`
+
+---
+
+## Helpers Endpoint
+
+- **GET "/api/countries"**
+
+REQUEST:`N/A`
+
+RESPONSE:
+```
+[
+    {
+        "id": 1,
+        "country": "Kenya"
+    },
+    {
+        "id": 2,
+        "country": "Uganda"
+    },
+    {
+        "id": 3,
+        "country": "Tanzania"
+    },
+    {
+        "id": 4,
+        "country": "Rwanda"
+    },
+    {
+        "id": 5,
+        "country": "South Sudan"
+    }
+]
+```
