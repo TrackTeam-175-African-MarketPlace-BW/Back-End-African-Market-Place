@@ -66,9 +66,12 @@ REQUEST:
 
 ```
 {
-    "email": "alex@lambda.com",
-    "password": "alex",
-    "country": "Kenya"
+    "email": "mark@facebook.com", <em>required</em>
+    "password": "alex", <em>required</em>
+    "country": "Kenya", <em>required</em>
+    "name": "Mark Zuckerberg", <em>optional</em>
+    "user_info": "Owner of Facebook",<em>optional</em>
+    "user_photo": "https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg" <em>optional</em>
 }
 ```
 
@@ -76,11 +79,11 @@ RESPONSE:
 
 ```
 {
-    "id": 14,
-    "email": "alex@lambda.com",
-    "name": null,
-    "user_info": null,
-    "user_photo": null,
+    "id": 16,
+    "email": "zucks@facebook.com",
+    "name": "Mark Zuckerberg",
+    "user_info": "Owner of Facebook",
+    "user_photo": "https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg",
     "country": "Kenya"
 }
 ```

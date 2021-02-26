@@ -31,7 +31,7 @@ function checkUserBody(req, res, next) {
   if (!user.email || user.email.split("@").length !== 2 || !user.password) {
     const err = new Error();
     err.status = 400;
-    err.message = "Request must contain an email, password.";
+    err.message = "Request must contain an email and password.";
     next(err);
   } else {
     next();
@@ -83,6 +83,9 @@ async function checkCountry(req, res, next) {
         req.body = {
           email: user.email,
           password: user.password,
+          name: user.name,
+          user_info: user.user_info,
+          user_photo: user.user_photo,
           country_id: country.id,
         };
         next();
