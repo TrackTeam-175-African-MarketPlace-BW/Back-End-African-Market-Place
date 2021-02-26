@@ -10,13 +10,14 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const secrets = require("../config/secrets");
 
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   Users.getUsers()
     .then((users) => {
       res.status(200).json(users);
     })
     .catch((err) => {
-      res.status(500).json({ message: "Server failed getting users." });
+      err.message = "Server failed getting users.";
+      next(err);
     });
 });
 
@@ -66,6 +67,18 @@ router.post("/login", checkUserBody, async (req, res, next) => {
     err.message = "Server failed to add user.";
     next(err);
   }
+});
+
+router.get("/:id/items", checkUserId, restrict, (req, res, next) => {
+  const { id } = req.params;
+  Users.getItemsByUser(id)
+    .then((items) => {
+      res.status(200).json(items);
+    })
+    .catch((err) => {
+      err.message = "Server failed getting users.";
+      next(err);
+    });
 });
 
 function generateToken(email) {

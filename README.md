@@ -105,6 +105,48 @@ RESPONSE:
 }
 ```
 
+- **GET "/api/users/:id/items"** [RESTRICTED]
+
+EXAMPLE: "/api/users/3/items"
+
+REQUEST:
+
+```
+headers: {
+    authorization: "Bearer insert_token_here"
+}
+```
+
+RESPONSE:
+
+```
+[
+  {
+    "id": 4,
+    "name": "Imported Rice",
+    "description": "Best rice in the markets",
+    "price": 4.35,
+    "category": "Cereals - Rice",
+    "market": "kakamega",
+    "location": "Rwanda",
+    "owner": "Sarah Rose",
+    "owner_email": "sarah@gmail.com"
+  },
+  {
+    "id": 5,
+    "name": "Oranges",
+    "description": "Best oranges in the markets",
+    "price": 3.1,
+    "category": "Fruits",
+    "market": "Embu",
+    "location": "Uganda",
+    "owner": "Sarah Rose",
+    "owner_email": "sarah@gmail.com"
+  }
+]
+```
+
+
 ---
 
 ## Items Endpoints
