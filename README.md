@@ -24,7 +24,7 @@ RESPONSE: `{"api": "up"}`
 
 ---
 
-## Users Endpoint
+## Users Endpoints
 
 - **GET "/api/users"** [TEMPORARY]
 
@@ -103,11 +103,16 @@ RESPONSE:
 ```
 ---
 
-## Items Endpoint
+## Items Endpoints
 
 - **GET "/api/items"** [RESTRICTED] 
 
-REQUEST:`N/A`
+REQUEST:
+```
+headers: {
+    authorization: "Bearer insert_token_here"
+}
+```
 
 RESPONSE: 
 ```
@@ -151,7 +156,7 @@ RESPONSE:
 
 ---
 
-## Helpers Endpoint
+## Helpers Endpoints
 
 - **GET "/api/countries"**
 
