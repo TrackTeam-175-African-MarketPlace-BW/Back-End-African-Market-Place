@@ -66,12 +66,12 @@ REQUEST:
 
 ```
 {
-    "email": "mark@facebook.com", <em>required</em>
-    "password": "alex", <em>required</em>
-    "country": "Kenya", <em>required</em>
-    "name": "Mark Zuckerberg", <em>optional</em>
-    "user_info": "Owner of Facebook",<em>optional</em>
-    "user_photo": "https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg" <em>optional</em>
+    "email": "mark@facebook.com", /* required */
+    "password": "alex", /* required */
+    "country": "Kenya", /* required */
+    "name": "Mark Zuckerberg", /* optional */
+    "user_info": "Owner of Facebook", /* optional */
+    "user_photo": "https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg" /* optional */
 }
 ```
 
