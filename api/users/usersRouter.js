@@ -21,7 +21,7 @@ router.post(
   checkCountry,
   async (req, res, next) => {
     const user = req.body;
-    const hash = await bcrypt.hashSync(user.password, 10);
+    const hash = bcrypt.hashSync(user.password, 10);
     try {
       const newUser = await Users.addUser({ ...user, password: hash });
       res.status(201).json(newUser);

@@ -13,7 +13,7 @@ function getUserByEmail(email) {
 }
 
 async function addUser(newUser) {
-  const [id] = await db("users").insert(newUser);
+  const [id] = await db("users").insert(newUser, ["id"]);
   return getUserById(id);
 }
 
