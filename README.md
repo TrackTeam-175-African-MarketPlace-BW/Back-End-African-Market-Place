@@ -149,6 +149,46 @@ RESPONSE:
 ]
 ```
 
+- **POST "/api/users/:id/items"** [RESTRICTED]
+
+EXAMPLE: "/api/users/16/items"
+
+REQUEST:
+
+```
+headers: {
+    authorization: "Bearer insert_token_here"
+}
+
+body: {
+    "name": "Lettuce", /* required */
+    "description": "Best lettuce in the markets", /* optional */
+    "price": 4.25, /* optional */
+    "category": "Vegetables", /* required */
+    "market": "Loitoktok", /* required */
+    "location": "Tanzania" /* required */
+}
+```
+
+RESPONSE:
+
+```
+{
+    "id": 11,
+    "name": "Lettuce",
+    "description": "Best lettuce in the markets",
+    "price": 4.25,
+    "category": "Vegetables",
+    "market": "Loitoktok",
+    "location": "Tanzania",
+    "owner": "Mark Zuckerberg",
+    "owner_email": "zucks@facebook.com"
+}
+```
+
+🧮 Notes:
+A logged in user can't add an item for another user.
+
 - **GET "/api/users/:id/items/:itemId"** [RESTRICTED]
 
 EXAMPLE: "/api/users/2/items/2"

@@ -66,7 +66,39 @@ async function checkItemId(req, res, next) {
 
 async function checkItemBody(req, res, next) {
   const item = req.body;
-  next();
+  const user = req.user;
+
+  if (!item.name || !item.category || !item.market || !item.location) {
+    const err = new Error();
+    err.status = 400;
+    err.message = "Request must contain a name, category, market and location.";
+    next(err);
+  } else {
+    try {
+      const country = await Helpers.getCountries(item.location);
+      const market = await Helpers.getMarketByName(item.market);
+      const category = await Helpers.getCategoryByName(item.category);
+      if (!country || !market || !category) {
+        const err = new Error();
+        err.status = 404;
+        err.message = "location, category or market not found.";
+        next(err);
+      } else {
+        req.body = {
+          name: item.name,
+          description: item.description,
+          price: item.price,
+          category_id: category.id,
+          market_id: market.id,
+          user_id: user.id,
+        };
+        next();
+      }
+    } catch (err) {
+      err.message = "Server failed getting country or market.";
+      next(err);
+    }
+  }
 }
 
 async function checkCountry(req, res, next) {

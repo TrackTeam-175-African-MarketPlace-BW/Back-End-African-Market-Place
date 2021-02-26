@@ -43,8 +43,8 @@ function getItemById(id) {
 }
 
 async function addItem(newItem) {
-  const savedItem = await db("items").insert(newItem).first();
-  return getItemById(savedItem.id);
+  const [newId] = await db("items").insert(newItem);
+  return getItemById(newId);
 }
 
 module.exports = { getItems, getItemById, addItem };
