@@ -1,5 +1,6 @@
 const Helpers = require("../helpers/helpersModel");
 const Users = require("../users/usersModel");
+const Items = require("../Items/ItemsModel");
 const secrets = require("../config/secrets");
 const jwt = require("jsonwebtoken");
 
@@ -50,6 +51,19 @@ async function checkUserId(req, res, next) {
   }
 }
 
+async function checkItemId(req, res, next) {
+  const { itemId } = req.params;
+  try {
+    const [item] = await Items.getItemById(itemId);
+    req.body = item;
+    next();
+  } catch (err) {
+    err.status = 404;
+    err.message = "Item not found.";
+    next(err);
+  }
+}
+
 async function checkCountry(req, res, next) {
   const user = req.body;
 
@@ -81,5 +95,10 @@ async function checkCountry(req, res, next) {
   }
 }
 
-
-module.exports = { restrict, checkUserBody, checkCountry, checkUserId };
+module.exports = {
+  restrict,
+  checkUserBody,
+  checkCountry,
+  checkUserId,
+  checkItemId,
+};
