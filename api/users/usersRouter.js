@@ -50,7 +50,14 @@ router.post(
     try {
       const newUser = await Users.addUser({ ...user, password: hash });
       console.log("REACHED HERE!!!");
-      res.status(201).json(newUser);
+      res.status(201).json({
+        id: newUser.id,
+        email: newUser.email,
+        name: newUser.name,
+        user_info: newUser.user_info,
+        user_photo: newUser.user_photo,
+        country_id: newUser.country_id,
+      });
     } catch (err) {
       err.message = "Server failed to add user.";
       next(err);
