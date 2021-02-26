@@ -1,6 +1,6 @@
 const Helpers = require("../helpers/helpersModel");
 const Users = require("../users/usersModel");
-const Items = require("../Items/ItemsModel");
+const Items = require("../items/itemsModel");
 const secrets = require("../config/secrets");
 const jwt = require("jsonwebtoken");
 
