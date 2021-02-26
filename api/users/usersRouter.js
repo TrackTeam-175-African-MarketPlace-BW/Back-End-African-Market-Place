@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Users = require("./usersModel");
 const {
+  restrict,
   checkUserBody,
   checkCountry,
   checkUserId,
@@ -19,17 +20,24 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", checkUserId, (req, res) => {
+router.get("/:id", checkUserId, restrict, (req, res, next) => {
   const user = req.body;
+  const email = req.decodedToken.user;
 
-  res.status(200).json({
-    id: user.id,
-    email: user.email,
-    name: user.name,
-    user_info: user.user_info,
-    user_photo: user.user_photo,
-    country_id: user.country_id,
-  });
+  if (user.email !== email) {
+    const err = new Error();
+    err.status = 403;
+    err.message = "You're not allowed to view this information";
+    next(err);
+  } else
+    res.status(200).json({
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      user_info: user.user_info,
+      user_photo: user.user_photo,
+      country_id: user.country_id,
+    });
 });
 
 router.post(

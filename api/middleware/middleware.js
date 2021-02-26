@@ -1,8 +1,28 @@
 const Helpers = require("../helpers/helpersModel");
 const Users = require("../users/usersModel");
+const secrets = require("../config/secrets");
+const jwt = require("jsonwebtoken");
 
 function restrict(req, res, next) {
-  next();
+  const token =
+    req.headers?.authorization?.split(" ")[1] ?? req.headers?.authorization;
+  if (!token) {
+    const err = new Error();
+    err.status = 401;
+    err.message = "You're not authorized to access this endpoint.";
+    next(err);
+  } else {
+    jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
+      if (err) {
+        err.status = 401;
+        err.message = "You're not authorized to access this endpoint.";
+        next(err);
+      } else {
+        req.decodedToken = decodedToken;
+        next();
+      }
+    });
+  }
 }
 
 function checkUserBody(req, res, next) {
