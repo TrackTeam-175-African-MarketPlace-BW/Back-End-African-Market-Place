@@ -42,7 +42,7 @@ async function checkUserId(req, res, next) {
   const { id } = req.params;
   try {
     const [user] = await Users.getUserById(id);
-    req.body = user;
+    req.user = user;
     next();
   } catch (err) {
     err.status = 404;
@@ -62,6 +62,11 @@ async function checkItemId(req, res, next) {
     err.message = "Item not found.";
     next(err);
   }
+}
+
+async function checkItemBody(req, res, next) {
+  const item = req.body;
+  next();
 }
 
 async function checkCountry(req, res, next) {
@@ -104,4 +109,5 @@ module.exports = {
   checkCountry,
   checkUserId,
   checkItemId,
+  checkItemBody,
 };

@@ -66,7 +66,7 @@ REQUEST:
 
 ```
 {
-    "email": "mark@facebook.com", /* required */
+    "email": "zucks@facebook.com", /* required */
     "password": "alex", /* required */
     "country": "Kenya", /* required */
     "name": "Mark Zuckerberg", /* optional */

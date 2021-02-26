@@ -7,6 +7,7 @@ const {
   checkCountry,
   checkUserId,
   checkItemId,
+  checkItemBody,
 } = require("../middleware/middleware");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -24,7 +25,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", checkUserId, restrict, (req, res, next) => {
-  const user = req.body;
+  const user = req.user;
   const email = req.decodedToken.user;
 
   if (user.email !== email) {
@@ -41,7 +42,6 @@ router.post(
   checkCountry,
   async (req, res, next) => {
     const user = req.body;
-    console.log(user)
     const hash = bcrypt.hashSync(user.password, 10);
     try {
       const newUser = await Users.addUser({ ...user, password: hash });
@@ -83,6 +83,34 @@ router.get("/:id/items", checkUserId, restrict, (req, res, next) => {
       next(err);
     });
 });
+
+router.post(
+  "/:id/items",
+  checkUserId,
+  checkItemBody,
+  restrict,
+  (req, res, next) => {
+    const user = req.user;
+    const item = req.body;
+    const email = req.decodedToken.user;
+
+    if (user.email !== email) {
+      const err = new Error();
+      err.status = 403;
+      err.message = "You're not allowed to post this item.";
+      next(err);
+    } else {
+      Items.addItem(item)
+        .then((newItem) => {
+          res.status(201).json(newItem);
+        })
+        .catch((err) => {
+          err.message = "Server failed adding a new item.";
+          next(err);
+        });
+    }
+  }
+);
 
 router.get(
   "/:id/items/:itemId",

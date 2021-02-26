@@ -42,4 +42,9 @@ function getItemById(id) {
     .join("countries", "markets.country_id", "=", "countries.id");
 }
 
-module.exports = { getItems, getItemById };
+async function addItem(newItem) {
+  const savedItem = await db("items").insert(newItem).first();
+  return getItemById(savedItem.id);
+}
+
+module.exports = { getItems, getItemById, addItem };

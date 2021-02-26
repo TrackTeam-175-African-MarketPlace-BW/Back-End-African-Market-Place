@@ -16,6 +16,14 @@ function getCategories() {
   return db("categories");
 }
 
+function getCategoryById(id) {
+  return db("categories").where({ id });
+}
+
+function getCategoryByName(category) {
+  return db("categories").where({ category }).first();
+}
+
 async function getMarkets(...args) {
   if (args.length === 0)
     return db
@@ -33,10 +41,22 @@ async function getMarkets(...args) {
   }
 }
 
+function getMarketById(id) {
+  return db("markets").where({ id });
+}
+
+function getMarketByName(market) {
+  return db("markets").where({ market }).first();
+}
+
 module.exports = {
   getCountries,
   getCountryById,
   getCountryByName,
   getCategories,
   getMarkets,
+  getCategoryById,
+  getCategoryByName,
+  getMarketById,
+  getMarketByName,
 };
