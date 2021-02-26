@@ -24,6 +24,7 @@ router.post(
     const hash = bcrypt.hashSync(user.password, 10);
     try {
       const newUser = await Users.addUser({ ...user, password: hash });
+      console.log("REACHED HERE!!!")
       res.status(201).json(newUser);
     } catch (err) {
       err.message = "Server failed to add user.";

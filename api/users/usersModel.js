@@ -14,7 +14,9 @@ function getUserByEmail(email) {
 
 async function addUser(newUser) {
   const [id] = await db("users").insert(newUser, ["id"]);
+  console.log("ID: ", id);
   const [user] = await getUserById(id);
+  console.log("User: ", user);
   return user;
 }
 
