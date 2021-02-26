@@ -1,4 +1,5 @@
 const Helpers = require("../helpers/helpersModel");
+const Users = require("../users/usersModel");
 
 function restrict(req, res, next) {
   next();
@@ -13,6 +14,19 @@ function checkUserBody(req, res, next) {
     next(err);
   } else {
     next();
+  }
+}
+
+async function checkUserId(req, res, next) {
+  const { id } = req.params;
+  try {
+    const [user] = await Users.getUserById(id);
+    req.body = user;
+    next();
+  } catch (err) {
+    err.status = 404;
+    err.message = "User not found.";
+    next(err);
   }
 }
 
@@ -47,4 +61,4 @@ async function checkCountry(req, res, next) {
   }
 }
 
-module.exports = { restrict, checkUserBody, checkCountry };
+module.exports = { restrict, checkUserBody, checkCountry, checkUserId };

@@ -14,17 +14,15 @@ function getUserByEmail(email) {
 
 async function addUser(newUser) {
   const [user_id] = await db("users").insert(newUser, ["id"]);
-  console.log("ID: ", user_id);
   const [user] = await getUserById(user_id.id);
-  console.log("User: ", user);
   return user;
 }
 
 async function editUser(savedUser) {
-  const [id] = await db("users")
+  const [user_id] = await db("users")
     .where({ id: savedUser.id })
     .update(savedUser, ["id"]);
-  const [user] = await getUserById(Object.values(id));
+  const [user] = await getUserById(user_id.id);
   return user;
 }
 
