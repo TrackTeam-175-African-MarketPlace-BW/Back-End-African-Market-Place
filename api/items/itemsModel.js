@@ -44,7 +44,7 @@ function getItemById(id) {
 
 async function addItem(newItem) {
   const [newId] = await db("items").insert(newItem, ["id"]);
-  return getItemById(newId);
+  return getItemById(newId.id ?? newId);
 }
 
 async function editItem(id, changedItem) {
