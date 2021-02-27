@@ -51,6 +51,34 @@ async function checkUserId(req, res, next) {
   }
 }
 
+async function checkUserProfile(req, res, next) {
+  const profile = req.body;
+  const { id } = req.params;
+
+  let country;
+
+  try {
+    const user = await Users.getFullUserDetails(id);
+
+    if (profile.country) {
+      country = await Helpers.getCountryByName(profile.country);
+    }
+
+    req.profile = {
+      email: profile.email ?? user.email,
+      name: profile.name ?? user.name,
+      user_info: profile.user_info ?? user.user_info,
+      user_photo: profile.user_photo ?? user.user_photo,
+      password: user.password,
+      country_id: country.id ?? user.country_id,
+    };
+    next();
+  } catch (err) {
+    err.message = "Server failed to get user details.";
+    next(err);
+  }
+}
+
 async function checkItemId(req, res, next) {
   const { itemId } = req.params;
   try {
@@ -135,11 +163,26 @@ async function checkCountry(req, res, next) {
   }
 }
 
+function checkPasswordBody(req, res, next) {
+  const ps = req.body;
+
+  if (!ps.oldPassword || !ps.newPassword) {
+    const err = new Error();
+    err.status = 400;
+    err.message = "Request must contain an old and new password.";
+    next(err);
+  } else {
+    next();
+  }
+}
+
 module.exports = {
   restrict,
   checkUserBody,
   checkCountry,
   checkUserId,
+  checkUserProfile,
   checkItemId,
   checkItemBody,
+  checkPasswordBody,
 };

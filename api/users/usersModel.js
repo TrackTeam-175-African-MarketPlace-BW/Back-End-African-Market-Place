@@ -29,6 +29,10 @@ function getUserById(id) {
     .join("countries", "users.country_id", "=", "countries.id");
 }
 
+function getFullUserDetails(id) {
+  return db("users").where({ id }).first();
+}
+
 function getUserByEmail(email) {
   return db("users").where({ email }).first();
 }
@@ -39,12 +43,8 @@ async function addUser(newUser) {
   return user;
 }
 
-async function editUser(changedUser) {
-  const [user_id] = await db("users")
-    .where({ id: changedUser.id })
-    .update(changedUser, ["id"]);
-  const [user] = await getUserById(user_id.id);
-  return user;
+function editUser(id, changedUser) {
+  return db("users").where({ id }).update(changedUser);
 }
 
 function getItemsByUser(id) {
@@ -71,6 +71,7 @@ function getItemsByUser(id) {
 module.exports = {
   getUsers,
   getUserById,
+  getFullUserDetails,
   getUserByEmail,
   addUser,
   editUser,

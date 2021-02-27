@@ -108,6 +108,71 @@ RESPONSE:
 }
 ```
 
+- **PUT "/api/users/:id/password** [RESTRICTED]
+
+EXAMPLE: "/api/users/16/password"
+
+REQUEST:
+
+```
+headers: {
+    authorization: "Bearer insert_token_here"
+}
+
+body: {
+    "oldPassword": "alex", /* required */
+    "newPassword": "mark", /* required */ 
+}
+```
+
+RESPONSE:
+
+```
+{
+    "message": "password changed successfully."
+}
+```
+
+🧮 Notes:
+A logged in user can't change a password for another user.
+
+- **PUT "/api/users/:id/profile** [RESTRICTED]
+
+EXAMPLE: "/api/users/16/profile"
+
+REQUEST:
+
+```
+headers: {
+    authorization: "Bearer insert_token_here"
+}
+
+body: {
+    "email": "thezucks@facebook.com",
+    "name": "Mark Zuckerberg 1st",
+    "user_info": "Owner of Facebook for now",
+    "user_photo": "https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg",
+    "country": "Rwanda"
+}
+```
+
+RESPONSE:
+
+```
+{
+    "id": 16,
+    "email": "thezucks@facebook.com",
+    "name": "Mark Zuckerberg 1st",
+    "user_info": "Owner of Facebook for now",
+    "user_photo": "https://www.gstatic.com/tv/thumb/persons/589228/589228_v9_ba.jpg",
+    "country": "Rwanda"
+}
+```
+
+🧮 Notes:
+[1] A logged in user can't change the profile for another user.
+[2] If you changed the email, you have to login in again.
+
 - **GET "/api/users/:id/items"** [RESTRICTED]
 
 EXAMPLE: "/api/users/3/items"

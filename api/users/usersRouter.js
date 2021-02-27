@@ -1,13 +1,16 @@
 const router = require("express").Router();
 const Users = require("./usersModel");
+const Helpers = require("../helpers/helpersModel");
 const Items = require("../items/itemsModel");
 const {
   restrict,
   checkUserBody,
   checkCountry,
   checkUserId,
+  checkUserProfile,
   checkItemId,
   checkItemBody,
+  checkPasswordBody,
 } = require("../middleware/middleware");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -189,6 +192,92 @@ router.put(
         })
         .catch((err) => {
           err.message = "Server failed to edit an item.";
+          next(err);
+        });
+    }
+  }
+);
+
+router.put(
+  "/:id/password",
+  checkPasswordBody,
+  checkUserId,
+  restrict,
+  async (req, res, next) => {
+    const { oldPassword, newPassword } = req.body;
+    const email = req.decodedToken.user;
+    const { id } = req.params;
+
+    try {
+      const user = await Users.getFullUserDetails(id);
+
+      if (user.email !== email) {
+        const err = new Error();
+        err.status = 403;
+        err.message = "You're not allowed to change the password.";
+        next(err);
+      } else {
+        if (bcrypt.compareSync(oldPassword, user.password)) {
+          const hash = bcrypt.hashSync(newPassword, 10);
+
+          Users.editUser(user.id, { ...user, password: hash })
+            .then((count) => {
+              if (count === 1)
+                res
+                  .status(200)
+                  .json({ message: "password changed successfully." });
+              else {
+                const err = new Error();
+                err.message = "Server was not able to change password.";
+              }
+            })
+            .catch((err) => {
+              err.message = "Server failed to change the password.";
+              next(err);
+            });
+        } else {
+          const err = new Error();
+          err.status = 401;
+          err.message = "old password incorrect.";
+          next(err);
+        }
+      }
+    } catch (err) {
+      err.message = "Server failed to get user details.";
+      next(err);
+    }
+  }
+);
+
+router.put(
+  "/:id/profile",
+  checkUserId,
+  checkUserProfile,
+  restrict,
+  async (req, res, next) => {
+    const user = req.user;
+    const profile = req.profile;
+    const email = req.decodedToken.user;
+
+    if (user.email !== email) {
+      const err = new Error();
+      err.status = 403;
+      err.message = "You're not allowed to change the user profile.";
+      next(err);
+    } else {
+      Users.editUser(user.id, profile)
+        .then((count) => {
+          if (count === 1)
+            res
+              .status(200)
+              .json({ message: "user profile changed successfully." });
+          else {
+            const err = new Error();
+            err.message = "Server was not able to change the user profile.";
+          }
+        })
+        .catch((err) => {
+          err.message = "Server failed to change the user profile.";
           next(err);
         });
     }
