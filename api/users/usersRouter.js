@@ -165,6 +165,36 @@ router.delete(
   }
 );
 
+router.put(
+  "/:id/items/:itemId",
+  checkUserId,
+  checkItemId,
+  checkItemBody,
+  restrict,
+  (req, res, next) => {
+    const user = req.user;
+    const item = req.body;
+    const email = req.decodedToken.user;
+    const { itemId } = req.params;
+
+    if (user.email !== email) {
+      const err = new Error();
+      err.status = 403;
+      err.message = "You're not allowed to edit this item.";
+      next(err);
+    } else {
+      Items.editItem(itemId, item)
+        .then(([changedItem]) => {
+          res.status(200).json(changedItem);
+        })
+        .catch((err) => {
+          err.message = "Server failed to edit an item.";
+          next(err);
+        });
+    }
+  }
+);
+
 function generateToken(email) {
   const payload = { user: email };
   const options = {

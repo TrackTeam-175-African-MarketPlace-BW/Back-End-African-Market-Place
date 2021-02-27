@@ -55,7 +55,7 @@ async function checkItemId(req, res, next) {
   const { itemId } = req.params;
   try {
     const [item] = await Items.getItemById(itemId);
-    req.body = item;
+    req.item = item;
     next();
   } catch (err) {
     err.status = 404;

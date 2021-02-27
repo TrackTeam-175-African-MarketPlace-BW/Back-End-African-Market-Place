@@ -13,7 +13,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.get("/:itemId", checkItemId, (req, res, next) => {
-  const item = req.body;
+  const item = req.item;
   try {
     res.status(200).json(item);
   } catch (err) {

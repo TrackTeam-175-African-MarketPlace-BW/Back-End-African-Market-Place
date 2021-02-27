@@ -47,12 +47,9 @@ async function addItem(newItem) {
   return getItemById(newId);
 }
 
-async function editItem(changedItem) {
-  const [item_id] = await db("items")
-    .where({ id: changedItem.id })
-    .update(changedItem, ["id"]);
-  const [updatedItem] = await getUserById(item_id.id);
-  return updatedItem;
+async function editItem(id, changedItem) {
+  const item_id = await db("items").where("items.id", id).update(changedItem);
+  return await getItemById(id);
 }
 
 async function deleteItem(id) {

@@ -239,6 +239,46 @@ Response status: 204 (upon successful delete)
 🧮 Notes:
 A logged in user can't delete an item for another user.
 
+- **PUT "/api/users/:id/items/:itemId"** [RESTRICTED]
+
+EXAMPLE: "/api/users/16/items/7"
+
+REQUEST:
+
+```
+headers: {
+    authorization: "Bearer insert_token_here"
+}
+
+body: {
+    "name": "Kiwi", /* required */
+    "description": "Best kiwi in the markets", /* optional */
+    "price": 13, /* optional */
+    "category": "Fruits", /* required */
+    "market": "Embu", /* required */
+    "location": "Uganda" /* required */    
+}
+```
+
+RESPONSE:
+
+```
+{
+    "id": 7,
+    "name": "Kiwi",
+    "description": "Best kiwi in the markets",
+    "price": 13,
+    "category": "Fruits",
+    "market": "Embu",
+    "location": "Uganda",
+    "owner": "Mark Zuckerberg",
+    "owner_email": "zucks@facebook.com"
+}
+```
+
+🧮 Notes:
+A logged in user can't edit an item for another user.
+
 ---
 
 ## Items Endpoints
