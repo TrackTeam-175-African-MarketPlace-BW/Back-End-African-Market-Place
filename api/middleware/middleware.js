@@ -131,7 +131,6 @@ async function checkItemBody(req, res, next) {
 
 async function checkCountry(req, res, next) {
   const user = req.body;
-  console.log(user);
 
   if (!user.country) {
     const err = new Error();
@@ -141,7 +140,6 @@ async function checkCountry(req, res, next) {
   } else {
     try {
       const country = await Helpers.getCountryByName(user.country);
-      console.log(country);
       if (!country) {
         const err = new Error();
         err.message = "Server failed getting the country.";
