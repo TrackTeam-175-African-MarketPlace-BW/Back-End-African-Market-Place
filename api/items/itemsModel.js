@@ -43,7 +43,7 @@ function getItemById(id) {
 }
 
 async function addItem(newItem) {
-  const [newId] = await db("items").insert(newItem);
+  const [newId] = await db("items").insert(newItem, ["id"]);
   return getItemById(newId);
 }
 
