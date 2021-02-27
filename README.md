@@ -26,13 +26,15 @@ RESPONSE: `{"api": "up"}`
 
 ## Users Endpoints
 
-- **GET "/api/users"** [TEMPORARY]
+### - **GET "/api/users"** 
 
 REQUEST:`N/A`
 
-RESPONSE: List of users [admin privileges]
+RESPONSE: `{"users": "endpoint up"}`
 
-- **GET "/api/users/:id"** [RESTRICTED]
+<em>List of users [discontinued]</em>
+
+### - **GET "/api/users/:id"** [RESTRICTED]
 
 EXAMPLE: "/api/users/1"
 
@@ -60,7 +62,7 @@ RESPONSE:
 🧮 Notes:
 A logged in user can't view the profile details of another user.
 
-- **POST "/api/users/register"**
+### - **POST "/api/users/register"**
 
 REQUEST:
 
@@ -88,7 +90,7 @@ RESPONSE:
 }
 ```
 
-- **POST "/api/users/login"**
+### - **POST "/api/users/login"**
 
 REQUEST:
 
@@ -108,7 +110,7 @@ RESPONSE:
 }
 ```
 
-- **PUT "/api/users/:id/password** [RESTRICTED]
+### - **PUT "/api/users/:id/password** [RESTRICTED]
 
 EXAMPLE: "/api/users/16/password"
 
@@ -121,7 +123,7 @@ headers: {
 
 body: {
     "oldPassword": "alex", /* required */
-    "newPassword": "mark", /* required */ 
+    "newPassword": "mark", /* required */
 }
 ```
 
@@ -136,7 +138,7 @@ RESPONSE:
 🧮 Notes:
 A logged in user can't change a password for another user.
 
-- **PUT "/api/users/:id/profile** [RESTRICTED]
+### - **PUT "/api/users/:id/profile** [RESTRICTED]
 
 EXAMPLE: "/api/users/16/profile"
 
@@ -170,10 +172,11 @@ RESPONSE:
 ```
 
 🧮 Notes:
+
 1. A logged in user can't change the profile for another user.
 2. If you changed the email, you have to login in again.
 
-- **GET "/api/users/:id/items"** [RESTRICTED]
+### - **GET "/api/users/:id/items"** [RESTRICTED]
 
 EXAMPLE: "/api/users/3/items"
 
@@ -214,7 +217,7 @@ RESPONSE:
 ]
 ```
 
-- **POST "/api/users/:id/items"** [RESTRICTED]
+### - **POST "/api/users/:id/items"** [RESTRICTED]
 
 EXAMPLE: "/api/users/16/items"
 
@@ -254,7 +257,7 @@ RESPONSE:
 🧮 Notes:
 A logged in user can't add an item for another user.
 
-- **GET "/api/users/:id/items/:itemId"** [RESTRICTED]
+### - **GET "/api/users/:id/items/:itemId"** [RESTRICTED]
 
 EXAMPLE: "/api/users/2/items/2"
 
@@ -282,7 +285,7 @@ RESPONSE:
 }
 ```
 
-- **DELETE "/api/users/:id/items/:itemId"** [RESTRICTED]
+### - **DELETE "/api/users/:id/items/:itemId"** [RESTRICTED]
 
 EXAMPLE: "/api/users/16/items/9"
 
@@ -297,6 +300,7 @@ headers: {
 RESPONSE:
 
 `N/A`
+
 ```
 Response status: 204 (upon successful delete)
 ```
@@ -304,7 +308,7 @@ Response status: 204 (upon successful delete)
 🧮 Notes:
 A logged in user can't delete an item for another user.
 
-- **PUT "/api/users/:id/items/:itemId"** [RESTRICTED]
+### - **PUT "/api/users/:id/items/:itemId"** [RESTRICTED]
 
 EXAMPLE: "/api/users/16/items/7"
 
@@ -321,7 +325,7 @@ body: {
     "price": 13, /* optional */
     "category": "Fruits", /* required */
     "market": "Embu", /* required */
-    "location": "Uganda" /* required */    
+    "location": "Uganda" /* required */
 }
 ```
 
@@ -348,7 +352,7 @@ A logged in user can't edit an item for another user.
 
 ## Items Endpoints
 
-- **GET "/api/items"** [RESTRICTED]
+### - **GET "/api/items"** [RESTRICTED]
 
 REQUEST:
 
@@ -399,7 +403,7 @@ RESPONSE:
 ]
 ```
 
-- **GET "/api/items/:itemId"** [RESTRICTED]
+### - **GET "/api/items/:itemId"** [RESTRICTED]
 
 EXAMPLE: "/api/items/3"
 
@@ -431,7 +435,7 @@ RESPONSE:
 
 ## Helpers Endpoints
 
-- **GET "/api/countries"**
+### - **GET "/api/countries"**
 
 REQUEST:`N/A`
 
@@ -462,7 +466,7 @@ RESPONSE:
 ]
 ```
 
-- **GET "/api/categories"**
+### - **GET "/api/categories"**
 
 REQUEST:`N/A`
 
@@ -494,7 +498,7 @@ RESPONSE:
 ]
 ```
 
-- **GET "/api/markets"**
+### - **GET "/api/markets"**
 
 REQUEST:`N/A`
 
@@ -531,7 +535,7 @@ RESPONSE:
 ]
 ```
 
-- **GET "/api/markets?country=INSERT_COUNTRY_NAME"**
+### - **GET "/api/markets?country=INSERT_COUNTRY_NAME"**
 
 EXAMPLE: "/api/markets?country=Rwanda"
 
