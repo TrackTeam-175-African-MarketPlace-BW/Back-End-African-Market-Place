@@ -100,15 +100,12 @@ router.post(
     const item = req.body;
     const email = req.decodedToken.user;
 
-    console.log(user, item, email);
-
     if (user.email !== email) {
       const err = new Error();
       err.status = 403;
       err.message = "You're not allowed to post this item.";
       next(err);
     } else {
-      console.log("REACHED")
       Items.addItem(item)
         .then(([newItem]) => {
           console.log("NEW: ", newItem);
