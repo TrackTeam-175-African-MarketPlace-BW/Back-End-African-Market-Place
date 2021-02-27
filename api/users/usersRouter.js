@@ -17,15 +17,15 @@ const jwt = require("jsonwebtoken");
 const secrets = require("../config/secrets");
 
 router.get("/", (req, res, next) => {
-  res.status(200).json({ users: "endpoint up" });
-  // Users.getUsers()
-  //   .then((users) => {
-  //     res.status(200).json(users);
-  //   })
-  //   .catch((err) => {
-  //     err.message = "Server failed getting users.";
-  //     next(err);
-  //   });
+  //res.status(200).json({ users: "endpoint up" });
+  Users.getUsers()
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((err) => {
+      err.message = "Server failed getting users.";
+      next(err);
+    });
 });
 
 router.get("/:id", checkUserId, restrict, (req, res, next) => {
