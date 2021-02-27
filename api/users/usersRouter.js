@@ -108,6 +108,7 @@ router.post(
     } else {
       Items.addItem(item)
         .then(([newItem]) => {
+          console.log("NEW: ", newItem);
           res.status(201).json(newItem);
         })
         .catch((err) => {
