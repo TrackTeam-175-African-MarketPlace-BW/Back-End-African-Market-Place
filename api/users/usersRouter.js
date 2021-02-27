@@ -17,15 +17,15 @@ const jwt = require("jsonwebtoken");
 const secrets = require("../config/secrets");
 
 router.get("/", (req, res, next) => {
-  //res.status(200).json({ users: "endpoint up" });
-  Users.getUsers()
-    .then((users) => {
-      res.status(200).json(users);
-    })
-    .catch((err) => {
-      err.message = "Server failed getting users.";
-      next(err);
-    });
+  res.status(200).json({ users: "endpoint up" });
+  // Users.getUsers()
+  //   .then((users) => {
+  //     res.status(200).json(users);
+  //   })
+  //   .catch((err) => {
+  //     err.message = "Server failed getting users.";
+  //     next(err);
+  //   });
 });
 
 router.get("/:id", checkUserId, restrict, (req, res, next) => {
@@ -47,10 +47,8 @@ router.post(
   async (req, res, next) => {
     const user = req.body;
     const hash = bcrypt.hashSync(user.password, 10);
-    console.log("USER: ", user);
     try {
       const [newUser] = await Users.addUser({ ...user, password: hash });
-      console.log("NEW: ", newUser);
       res.status(201).json(newUser);
     } catch (err) {
       err.message = "Server failed to add user.";
@@ -108,7 +106,6 @@ router.post(
     } else {
       Items.addItem(item)
         .then(([newItem]) => {
-          console.log("NEW: ", newItem);
           res.status(201).json(newItem);
         })
         .catch((err) => {
