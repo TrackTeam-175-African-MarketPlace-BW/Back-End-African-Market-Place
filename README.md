@@ -170,8 +170,8 @@ RESPONSE:
 ```
 
 🧮 Notes:
-[1] A logged in user can't change the profile for another user.
-[2] If you changed the email, you have to login in again.
+1. A logged in user can't change the profile for another user.
+2. If you changed the email, you have to login in again.
 
 - **GET "/api/users/:id/items"** [RESTRICTED]
 
