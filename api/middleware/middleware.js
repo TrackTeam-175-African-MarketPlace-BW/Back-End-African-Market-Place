@@ -96,20 +96,20 @@ async function checkItemBody(req, res, next) {
   const item = req.body;
   const user = req.user;
 
-  if (!item.name || !item.category || !item.market || !item.location) {
+  if (!item.name || !item.category || !item.market || !item.country) {
     const err = new Error();
     err.status = 400;
-    err.message = "Request must contain a name, category, market and location.";
+    err.message = "Request must contain a name, category, market and country.";
     next(err);
   } else {
     try {
-      const country = await Helpers.getCountries(item.location);
+      const country = await Helpers.getCountries(item.country);
       const market = await Helpers.getMarketByName(item.market);
       const category = await Helpers.getCategoryByName(item.category);
       if (!country || !market || !category) {
         const err = new Error();
         err.status = 404;
-        err.message = "location, category or market not found.";
+        err.message = "country, category or market not found.";
         next(err);
       } else {
         req.body = {

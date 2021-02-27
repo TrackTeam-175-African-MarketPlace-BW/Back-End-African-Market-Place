@@ -26,7 +26,7 @@ RESPONSE: `{"api": "up"}`
 
 ## Users Endpoints
 
-### - **GET "/api/users"** 
+### - **GET "/api/users"**
 
 REQUEST:`N/A`
 
@@ -199,7 +199,7 @@ RESPONSE:
     "price": 4.35,
     "category": "Cereals - Rice",
     "market": "kakamega",
-    "location": "Rwanda",
+    "country": "Rwanda",
     "owner": "Sarah Rose",
     "owner_email": "sarah@gmail.com"
   },
@@ -210,7 +210,7 @@ RESPONSE:
     "price": 3.1,
     "category": "Fruits",
     "market": "Embu",
-    "location": "Uganda",
+    "country": "Uganda",
     "owner": "Sarah Rose",
     "owner_email": "sarah@gmail.com"
   }
@@ -234,7 +234,7 @@ body: {
     "price": 4.25, /* optional */
     "category": "Vegetables", /* required */
     "market": "Loitoktok", /* required */
-    "location": "Tanzania" /* required */
+    "country": "Tanzania" /* required */
 }
 ```
 
@@ -248,7 +248,7 @@ RESPONSE:
     "price": 4.25,
     "category": "Vegetables",
     "market": "Loitoktok",
-    "location": "Tanzania",
+    "country": "Tanzania",
     "owner": "Mark Zuckerberg",
     "owner_email": "zucks@facebook.com"
 }
@@ -279,7 +279,7 @@ RESPONSE:
     "price": 50,
     "category": "Animal Products",
     "market": "Garisa",
-    "location": "Tanzania",
+    "country": "Tanzania",
     "owner": "Chad Diaz",
     "owner_email": "chad@gmail.com"
 }
@@ -325,7 +325,7 @@ body: {
     "price": 13, /* optional */
     "category": "Fruits", /* required */
     "market": "Embu", /* required */
-    "location": "Uganda" /* required */
+    "country": "Uganda" /* required */
 }
 ```
 
@@ -339,7 +339,7 @@ RESPONSE:
     "price": 13,
     "category": "Fruits",
     "market": "Embu",
-    "location": "Uganda",
+    "country": "Uganda",
     "owner": "Mark Zuckerberg",
     "owner_email": "zucks@facebook.com"
 }
@@ -373,7 +373,7 @@ RESPONSE:
         "price": 25.5,
         "category": "Animal Products",
         "market": "Bungoma",
-        "location": "Kenya",
+        "country": "Kenya",
         "owner": "Ismail AlKamal",
         "owner_email": "ismail@gmail.com"
     },
@@ -384,7 +384,7 @@ RESPONSE:
         "price": 50,
         "category": "Animal Products",
         "market": "Garisa",
-        "location": "Tanzania",
+        "country": "Tanzania",
         "owner": "Chad Diaz",
         "owner_email": "chad@gmail.com"
     },
@@ -395,7 +395,7 @@ RESPONSE:
         "price": 25.5,
         "category": "Beans",
         "market": "Busia",
-        "location": "Kenya",
+        "country": "Kenya",
         "owner": "Chad Diaz",
         "owner_email": "chad@gmail.com"
     },
@@ -425,7 +425,7 @@ RESPONSE:
     "price": 25.5,
     "category": "Beans",
     "market": "Busia",
-    "location": "Kenya",
+    "country": "Kenya",
     "owner": "Chad Diaz",
     "owner_email": "chad@gmail.com"
 },
@@ -509,27 +509,27 @@ RESPONSE:
     {
         "id": 1,
         "market": "Bungoma",
-        "location": "Kenya"
+        "country": "Kenya"
     },
     {
         "id": 2,
         "market": "Busia",
-        "location": "Kenya"
+        "country": "Kenya"
     },
     {
         "id": 3,
         "market": "Eldoret",
-        "location": "Uganda"
+        "country": "Uganda"
     },
     {
         "id": 4,
         "market": "Embu",
-        "location": "Uganda"
+        "country": "Uganda"
     },
     {
         "id": 5,
         "market": "Garisa",
-        "location": "Tanzania"
+        "country": "Tanzania"
     },
      ...
 ]
@@ -548,12 +548,12 @@ RESPONSE:
     {
         "id": 7,
         "market": "Kajiado",
-        "location": "Rwanda"
+        "country": "Rwanda"
     },
     {
         "id": 8,
         "market": "kakamega",
-        "location": "Rwanda"
+        "country": "Rwanda"
     }
 ]
 ```

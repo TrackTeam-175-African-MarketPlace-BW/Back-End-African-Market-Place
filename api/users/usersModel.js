@@ -56,7 +56,7 @@ function getItemsByUser(id) {
       "items.price",
       "categories.category",
       "markets.market",
-      "countries.country as location",
+      "countries.country",
       "users.name as owner",
       "users.email as owner_email"
     )
