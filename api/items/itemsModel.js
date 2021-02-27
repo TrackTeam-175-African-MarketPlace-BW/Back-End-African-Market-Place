@@ -44,8 +44,9 @@ function getItemById(id) {
 
 async function addItem(newItem) {
   console.log("NEW ITEM:", newItem);
-  const [newId] = await db("items").insert(newItem);
+  const newId = await db("items").insert(newItem);
   console.log("NEW: ", newId);
+  console.log("NEW: ", [newId]);
   return getItemById(newId.id ?? newId);
 }
 
