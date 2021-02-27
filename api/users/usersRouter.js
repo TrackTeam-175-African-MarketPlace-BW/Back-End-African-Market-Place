@@ -108,6 +108,7 @@ router.post(
       err.message = "You're not allowed to post this item.";
       next(err);
     } else {
+      console.log("REACHED")
       Items.addItem(item)
         .then(([newItem]) => {
           console.log("NEW: ", newItem);
