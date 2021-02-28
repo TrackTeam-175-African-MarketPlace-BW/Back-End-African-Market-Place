@@ -63,7 +63,15 @@ router.post("/login", checkUserBody, async (req, res, next) => {
     const savedUser = await Users.getUserByEmail(user.email);
     if (savedUser && bcrypt.compareSync(user.password, savedUser.password)) {
       const token = generateToken(savedUser.email);
-      res.status(200).json({ message: "login successful.", token });
+      res.status(200).json({
+        message: "login successful.",
+        token,
+        user: {
+          id: savedUser.id,
+          name: savedUser.name,
+          email: savedUser.email,
+        },
+      });
     } else {
       const err = new Error();
       err.status = 401;
