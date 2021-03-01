@@ -38,7 +38,9 @@ function getUserByEmail(email) {
 }
 
 async function addUser(newUser) {
+  console.log("NEW USER: ", newUser);
   const [newId] = await db("users").insert(newUser, ["id"]);
+  console.log("NEW ID: ", newId, [newId]);
   return getUserById(newId.id ?? newId);
 }
 
@@ -64,12 +66,7 @@ function getItemsByUser(id) {
     .join("users", "items.user_id", "=", "users.id")
     .join("categories", "items.category_id", "=", "categories.id")
     .join("markets", "items.market_id", "=", "markets.id")
-    .join(
-      "markets_countries",
-      "markets_countries.market_id",
-      "=",
-      "markets.id"
-    )
+    .join("markets_countries", "markets_countries.market_id", "=", "markets.id")
     .join("countries", "countries.id", "=", "markets_countries.country_id");
 }
 
