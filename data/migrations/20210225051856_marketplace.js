@@ -26,13 +26,23 @@ exports.up = function (knex) {
     .createTable("markets", (market) => {
       market.increments();
       market.string("market", 128).notNullable();
-      market
+    })
+    .createTable("markets_countries", (tbl) => {
+      tbl
+        .integer("market_id")
+        .unsigned()
+        .notNullable()
+        .references("markets.id")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
+      tbl
         .integer("country_id")
         .unsigned()
         .notNullable()
         .references("countries.id")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
+      tbl.primary(["country_id", "market_id"]);
     })
     .createTable("items", (item) => {
       item.increments();

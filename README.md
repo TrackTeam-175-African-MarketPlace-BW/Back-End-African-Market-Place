@@ -96,8 +96,8 @@ REQUEST:
 
 ```
 {
-    "email": "alex@lambda.com",
-    "password": "alex"
+    "email":"ismail@gmail.com",
+    "password":"ismail"
 }
 ```
 
@@ -106,7 +106,12 @@ RESPONSE:
 ```
 {
     "message": "login successful.",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWxleEBsYW1iZGEuY29tIiwiaWF0IjoxNjE0MzQxMjA5LCJleHAiOjE2MTQzNDQ4MDl9.Kpo_FQQ593r9_buGDiUA1jG5IWPDar18xKQ2aRXJAh0"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaXNtYWlsQGdtYWlsLmNvbSIsImlhdCI6MTYxNDU3MTcxMywiZXhwIjoxNjE0NTc1MzEzfQ.SOjoyQqvs4Df4DVA1X_Q6C6ERht9O9IM4Fz94sPoXyg",
+    "user": {
+        "id": 1,
+        "name": "Ismail AlKamal",
+        "email": "ismail@gmail.com"
+    }
 }
 ```
 

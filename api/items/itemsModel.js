@@ -1,4 +1,3 @@
-const { select } = require("../../data/dbConfig");
 const db = require("../../data/dbConfig");
 
 function getItems() {
@@ -18,7 +17,13 @@ function getItems() {
     .join("users", "items.user_id", "=", "users.id")
     .join("categories", "items.category_id", "=", "categories.id")
     .join("markets", "items.market_id", "=", "markets.id")
-    .join("countries", "markets.country_id", "=", "countries.id");
+    .join(
+      "markets_countries",
+      "markets_countries.market_id",
+      "=",
+      "markets.id"
+    )
+    .join("countries", "countries.id", "=", "markets_countries.country_id");
 }
 
 function getItemById(id) {
@@ -39,7 +44,13 @@ function getItemById(id) {
     .join("users", "items.user_id", "=", "users.id")
     .join("categories", "items.category_id", "=", "categories.id")
     .join("markets", "items.market_id", "=", "markets.id")
-    .join("countries", "markets.country_id", "=", "countries.id");
+    .join(
+      "markets_countries",
+      "markets_countries.market_id",
+      "=",
+      "markets.id"
+    )
+    .join("countries", "countries.id", "=", "markets_countries.country_id");
 }
 
 async function addItem(newItem) {

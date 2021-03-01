@@ -29,15 +29,27 @@ async function getMarkets(...args) {
     return db
       .select("markets.id", "markets.market", "countries.country")
       .from("markets")
-      .join("countries", "markets.country_id", "=", "countries.id");
+      .join(
+        "markets_countries",
+        "markets_countries.market_id",
+        "=",
+        "markets.id"
+      )
+      .join("countries", "countries.id", "=", "markets_countries.country_id");
   else {
     const country = args[0];
     const savedCountry = await getCountryByName(country);
     return db
       .select("markets.id", "markets.market", "countries.country")
       .from("markets")
-      .where("markets.country_id", savedCountry.id)
-      .join("countries", "markets.country_id", "=", "countries.id");
+      .join(
+        "markets_countries",
+        "markets_countries.market_id",
+        "=",
+        "markets.id"
+      )
+      .where("markets_countries.country_id", savedCountry.id)
+      .join("countries", "countries.id", "=", "markets_countries.country_id");
   }
 }
 
