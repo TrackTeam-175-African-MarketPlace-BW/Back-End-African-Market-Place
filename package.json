@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "npm": "7.6.0"
+  },
   "scripts": {
     "migrations": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
