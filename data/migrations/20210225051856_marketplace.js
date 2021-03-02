@@ -76,6 +76,7 @@ exports.up = function (knex) {
 exports.down = function (knex) {
   return knex.schema
     .dropTableIfExists("items")
+    .dropTableIfExists("markets_countries")
     .dropTableIfExists("markets")
     .dropTableIfExists("categories")
     .dropTableIfExists("users")
