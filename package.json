@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "14.16.0"
+    "node": "14.15.4"
   },
   "scripts": {
     "migrations": "knex migrate:latest",
@@ -46,4 +46,3 @@
     "supertest": "^6.1.3"
   }
 }
-
